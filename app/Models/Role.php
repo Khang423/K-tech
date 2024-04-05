@@ -10,10 +10,13 @@ class Role extends Model
     protected $fillable= [
         'id',
         'name',
-        'created_at',
-        'updated_at'
     ];
-    use HasFactory;
 
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
+
+    use HasFactory;
 
 }

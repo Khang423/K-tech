@@ -15,8 +15,11 @@ class Member extends Model
         'username',
         'password',
         'roles_id',
-        'created_at',
-        'updated_at',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
     use HasFactory;
 }

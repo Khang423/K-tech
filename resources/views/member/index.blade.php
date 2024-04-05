@@ -27,6 +27,8 @@
                     <th>Role</th>
                     <th>Created_at</th>
                     <th>Updated_at</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
             </table>
@@ -73,7 +75,7 @@
                 language: {
                     lengthMenu: '_MENU_'
                 },
-                lengthMenu: [[1, 5, 15, 25, 100, -1], [1, 5, 15, 25, 100, "All"]],
+                lengthMenu: [[ 5, 15, 25, 100, -1], [ 5, 15, 25, 100, "All"]],
                 buttons: [{
                     extend: 'copyHtml5',
                 },
@@ -131,35 +133,30 @@
                         data: 'updated_at',
                         name: 'updated_at'
                     },
-                    {{--{--}}
-                    {{--    data: 'course_name',--}}
-                    {{--    name: 'course_name'--}}
-                    {{--},--}}
-
-                    {{--{--}}
-                    {{--    data: 'edit',--}}
-                    {{--    targets: 3,--}}
-                    {{--    orderable: false,--}}
-                    {{--    searchable: false,--}}
-                    {{--    render: function(data) {--}}
-                    {{--        return `<a class="btn btn-success" href="${data}">--}}
-                    {{--            Edit--}}
-                    {{--        </a>`;--}}
-                    {{--    }--}}
-                    {{--},--}}
-                    {{--{--}}
-                    {{--    data: 'destroy',--}}
-                    {{--    targets: 4,--}}
-                    {{--    orderable: false,--}}
-                    {{--    searchable: false,--}}
-                    {{--    render: function(data, type, row, meta) {--}}
-                    {{--        return `<form action="${data}" method="post">--}}
-                    {{--            @csrf--}}
-                    {{--        @method('DELETE')--}}
-                    {{--        <button class="btn-delete btn btn-danger">Delete</button>--}}
-                    {{--    </form>`;--}}
-                    {{--    }--}}
-                    {{--},--}}
+                    {
+                        data: 'edit',
+                        targets: 9,
+                        orderable: false,
+                        searchable: false,
+                        render: function(data) {
+                            return `<a class="btn btn-success" href="${data}">
+                                Edit
+                            </a>`;
+                        }
+                    },
+                    {
+                        data: 'destroy',
+                        targets: 10,
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row, meta) {
+                            return `<form action="${data}" method="post">
+                                @csrf
+                            @method('DELETE')
+                            <button class="btn-delete btn btn-danger">Delete</button>
+                        </form>`;
+                        }
+                    },
                 ]
             });
 
