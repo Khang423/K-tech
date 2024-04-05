@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\admin\StoreMemberRequest;
+use App\Http\Requests\admin\UpdateMemberRequest;
 use App\Models\Member;
-use App\Http\Requests\StoreMemberRequest;
-use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Role;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
@@ -13,7 +14,6 @@ use Yajra\DataTables\DataTables;
 class MemberController extends Controller
 {
     private $model;
-
     public function __construct()
     {
         $this->model = new Member();
@@ -53,7 +53,7 @@ class MemberController extends Controller
     public function apiName(Request $request)
     {
         return $this->model
-            ->where('name', 'like', '%' . $request->get('q') . '%')
+            ->query()->where('name', 'like', '%' . $request->get('q') . '%')
             ->get([
                 'id',
                 'name',
@@ -77,7 +77,6 @@ class MemberController extends Controller
 
     public function show(Member $member)
     {
-        //
     }
 
     public function edit($member)
@@ -89,7 +88,7 @@ class MemberController extends Controller
 
     public function update(UpdateMemberRequest $request, Member $member)
     {
-        //
+
     }
 
     public function destroy($member)

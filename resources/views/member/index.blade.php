@@ -7,7 +7,7 @@
 @endpush
 @section('content')
     <div class="card">
-        <div class="card-header"></div>
+{{--        <div class="card-header"></div>--}}
         <div class="card-body">
             <a class="btn btn-success mb-2" href="{{ route('members.create') }}">
                 Add
@@ -44,6 +44,7 @@
     </script>
     <script>
         $(document).ready(function () {
+            // gọi api select2
             $("#select-name").select2({
                 ajax: {
                     url: "{{ route('members.api.name') }}",
@@ -66,7 +67,7 @@
                 },
                 placeholder: 'Search for a name'
             });
-
+            // gọi api datatable
             let table = $('#table-index').DataTable({
                 processing: true,
                 serverSide: true,

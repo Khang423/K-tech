@@ -2,7 +2,7 @@
     <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
 
-        
+
 
         <li class="notification-list">
             <a class="nav-link right-bar-toggle" href="javascript: void(0);">
@@ -11,16 +11,16 @@
         </li>
 
         <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-               aria-expanded="false">
-                                    <span class="account-user-avatar">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                                    </span>
-                <span>
-                                        <span class="account-user-name">Dominic Keller</span>
-                                        <span class="account-position">Founder</span>
-                                    </span>
-            </a>
+{{--            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"--}}
+{{--               aria-expanded="false">--}}
+{{--                                    <span class="account-user-avatar">--}}
+{{--                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">--}}
+{{--                                    </span>--}}
+{{--                <span>--}}
+{{--                                        <span class="account-user-name">Dominic Keller</span>--}}
+{{--                                        <span class="account-position">Founder</span>--}}
+{{--                                    </span>--}}
+{{--            </a>--}}
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
                 <div class=" dropdown-header noti-title">
