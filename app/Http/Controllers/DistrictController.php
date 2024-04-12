@@ -2,27 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\district\StoreDistrictRequest;
+use App\Http\Requests\district\UpdateDistrictRequest;
 use App\Models\District;
-use App\Http\Requests\StoreDistrictRequest;
-use App\Http\Requests\UpdateDistrictRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class DistrictController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $model;
+    public function __construct()
+    {
+        $this->model = new District();
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+        View::share('title', $title);
+    }
     public function index()
     {
-        //
+        return view('admin.address.district.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function api()
+    {
+        return DataTables::of($this->model::query())
+//            ->addColumn('edit', function ($object) {
+//                return route('roles.edit', $object);
+//            })
+//            ->addColumn('destroy', function ($object) {
+//                return route('roles.destroy', $object);
+//            })
+            ->make(true);
+    }
+
+    public function apiName(Request $request)
+    {
+        return $this->model
+            ->query()->where('name', 'like', '%' . $request->get('q') . '%')
+            ->get([
+                'id',
+                'name',
+            ]);
+    }
     public function create()
     {
         //
@@ -31,7 +56,7 @@ class DistrictController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDistrictRequest  $request
+     * @param  \App\Http\Requests\district\StoreDistrictRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDistrictRequest $request)
@@ -64,7 +89,7 @@ class DistrictController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDistrictRequest  $request
+     * @param  \App\Http\Requests\district\UpdateDistrictRequest  $request
      * @param  \App\Models\District  $district
      * @return \Illuminate\Http\Response
      */

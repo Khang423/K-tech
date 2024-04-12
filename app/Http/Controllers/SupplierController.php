@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\supplier\StoreSupplierRequest;
+use App\Http\Requests\supplier\UpdateSupplierRequest;
 use App\Models\Supplier;
-use App\Http\Requests\StoreSupplierRequest;
-use App\Http\Requests\UpdateSupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -31,7 +31,7 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSupplierRequest  $request
+     * @param  \App\Http\Requests\supplier\StoreSupplierRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSupplierRequest $request)
@@ -64,7 +64,7 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSupplierRequest  $request
+     * @param  \App\Http\Requests\supplier\UpdateSupplierRequest  $request
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */

@@ -2,8 +2,6 @@
     <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
 
-
-
         <li class="notification-list">
             <a class="nav-link right-bar-toggle" href="javascript: void(0);">
                 <i class="dripicons-gear noti-icon"></i>
@@ -11,16 +9,17 @@
         </li>
 
         <li class="dropdown notification-list">
-{{--            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"--}}
-{{--               aria-expanded="false">--}}
-{{--                                    <span class="account-user-avatar">--}}
-{{--                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">--}}
-{{--                                    </span>--}}
-{{--                <span>--}}
-{{--                                        <span class="account-user-name">Dominic Keller</span>--}}
-{{--                                        <span class="account-position">Founder</span>--}}
-{{--                                    </span>--}}
-{{--            </a>--}}
+            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button"
+               aria-haspopup="false"
+               aria-expanded="false">
+
+                <span>
+                                        <span class="account-user-name">@if(session()->has('name'))
+                                                                            {{ session('name') }}
+                                        @endif</span>
+                                        <span class="account-position">Founder</span>
+                                    </span>
+            </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
                 <div class=" dropdown-header noti-title">
@@ -34,7 +33,7 @@
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('logout') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-logout mr-1"></i>
                     <span>Logout</span>
                 </a>
@@ -91,7 +90,8 @@
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <div class="media">
-                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="32">
+                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-2.jpg"
+                             alt="Generic placeholder image" height="32">
                         <div class="media-body">
                             <h5 class="m-0 font-14">Erwin Brown</h5>
                             <span class="font-12 mb-0">UI Designer</span>
@@ -102,7 +102,8 @@
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <div class="media">
-                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="32">
+                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-5.jpg"
+                             alt="Generic placeholder image" height="32">
                         <div class="media-body">
                             <h5 class="m-0 font-14">Jacob Deo</h5>
                             <span class="font-12 mb-0">Developer</span>

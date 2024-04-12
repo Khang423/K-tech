@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\product_category\StoreProduct_categoryRequest;
+use App\Http\Requests\product_category\UpdateProduct_categoryRequest;
 use App\Models\Product_category;
-use App\Http\Requests\StoreProduct_categoryRequest;
-use App\Http\Requests\UpdateProduct_categoryRequest;
 
 class ProductCategoryController extends Controller
 {
@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProduct_categoryRequest  $request
+     * @param  \App\Http\Requests\product_category\StoreProduct_categoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProduct_categoryRequest $request)
@@ -64,7 +64,7 @@ class ProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProduct_categoryRequest  $request
+     * @param  \App\Http\Requests\product_category\UpdateProduct_categoryRequest  $request
      * @param  \App\Models\Product_category  $product_category
      * @return \Illuminate\Http\Response
      */

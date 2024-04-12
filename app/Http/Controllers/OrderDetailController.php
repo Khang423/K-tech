@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\order_detail\StoreOrder_detailRequest;
+use App\Http\Requests\order_detail\UpdateOrder_detailRequest;
 use App\Models\Order_detail;
-use App\Http\Requests\StoreOrder_detailRequest;
-use App\Http\Requests\UpdateOrder_detailRequest;
 
 class OrderDetailController extends Controller
 {
@@ -31,7 +31,7 @@ class OrderDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrder_detailRequest  $request
+     * @param  \App\Http\Requests\order_detail\StoreOrder_detailRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreOrder_detailRequest $request)
@@ -64,7 +64,7 @@ class OrderDetailController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOrder_detailRequest  $request
+     * @param  \App\Http\Requests\order_detail\UpdateOrder_detailRequest  $request
      * @param  \App\Models\Order_detail  $order_detail
      * @return \Illuminate\Http\Response
      */

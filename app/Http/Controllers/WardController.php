@@ -2,27 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ward\StoreWardRequest;
+use App\Http\Requests\ward\UpdateWardRequest;
 use App\Models\Ward;
-use App\Http\Requests\StoreWardRequest;
-use App\Http\Requests\UpdateWardRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class WardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $model;
+    public function __construct()
+    {
+        $this->model = new Ward();
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+        View::share('title', $title);
+    }
     public function index()
     {
-        //
+        return view('admin.address.ward.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function api()
+    {
+        return DataTables::of($this->model::query())
+//            ->addColumn('edit', function ($object) {
+//                return route('roles.edit', $object);
+//            })
+//            ->addColumn('destroy', function ($object) {
+//                return route('roles.destroy', $object);
+//            })
+            ->make(true);
+    }
+
+    public function apiName(Request $request)
+    {
+        return $this->model
+            ->query()->where('name', 'like', '%' . $request->get('q') . '%')
+            ->get([
+                'id',
+                'name',
+            ]);
+    }
     public function create()
     {
         //
@@ -31,7 +56,7 @@ class WardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreWardRequest  $request
+     * @param  \App\Http\Requests\ward\StoreWardRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreWardRequest $request)
@@ -64,7 +89,7 @@ class WardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateWardRequest  $request
+     * @param  \App\Http\Requests\ward\UpdateWardRequest  $request
      * @param  \App\Models\Ward  $ward
      * @return \Illuminate\Http\Response
      */

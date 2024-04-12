@@ -44,6 +44,7 @@ class StoreMemberRequest extends FormRequest
             ],
             'roles_id' => [
                 'required',
+                'not_in:0'
             ],
         ];
     }
@@ -69,7 +70,7 @@ class StoreMemberRequest extends FormRequest
             'username.min' => 'Tên đăng nhập không được dưới 5 kí tự.',
             //- message rules password
             'password.regex' => 'Mật khẩu không hợp lệ.',
-
+            'roles_id.not_in' => 'Vui lòng chọn vai trò.'
         ];
     }
 }

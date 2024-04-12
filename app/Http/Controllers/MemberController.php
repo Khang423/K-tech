@@ -27,14 +27,17 @@ class MemberController extends Controller
     public function index()
     {
         $name_role = Role::pluck('name');
-        return view('member.index', [
+        return view('admin.member.index', [
             'name_role' => $name_role
         ]);
     }
 
     public function api()
     {
-        return DataTables::of($this->model::query())
+        return DataTables::of($this->model::query()->with('role'))
+            ->editcolumn('roles_id', function ($object) {
+                return $object->role->name;
+            })
             ->editColumn('updated_at', function ($object) {
                 return $object->updated_at->format('H:i:s d-m-Y');
             })
@@ -63,7 +66,7 @@ class MemberController extends Controller
     public function create()
     {
         $name_role = Role::query()->get();
-        return view('member.create', [
+        return view('admin.member.create', [
             'name_role' => $name_role
         ]);
 
@@ -81,19 +84,22 @@ class MemberController extends Controller
 
     public function edit($member)
     {
-        return view('member.edit', [
+        return view('admin.member.edit', [
             'member' =>$this->model::query()->find($member),
         ]);
     }
 
-    public function update(UpdateMemberRequest $request, Member $member)
+    public function update(Request $request,$memberId)
     {
-
+        $object = $this->model::query()->find($memberId);
+        $object->fill($request->all());
+        $object->save();
+        //$this->model->update($request->validated());
+        return redirect()->route('members.index');
     }
 
     public function destroy($member)
     {
-
         $this->model->destroy($member);
         return redirect()->route('members.index');
     }

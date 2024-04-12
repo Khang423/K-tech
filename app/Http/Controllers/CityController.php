@@ -2,27 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\city\StoreCityRequest;
+use App\Http\Requests\city\UpdateCityRequest;
 use App\Models\City;
-use App\Http\Requests\StoreCityRequest;
-use App\Http\Requests\UpdateCityRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class CityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $model;
+    public function __construct()
+    {
+        $this->model = new City();
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+        View::share('title', $title);
+    }
     public function index()
     {
-        //
+        return view('admin.address.city.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function api()
+    {
+        return DataTables::of($this->model::query())
+//            ->addColumn('edit', function ($object) {
+//                return route('roles.edit', $object);
+//            })
+//            ->addColumn('destroy', function ($object) {
+//                return route('roles.destroy', $object);
+//            })
+            ->make(true);
+    }
+
+    public function apiName(Request $request)
+    {
+        return $this->model
+            ->query()->where('name', 'like', '%' . $request->get('q') . '%')
+            ->get([
+                'id',
+                'name',
+            ]);
+    }
+
     public function create()
     {
         //
@@ -31,7 +57,7 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCityRequest  $request
+     * @param  \App\Http\Requests\city\StoreCityRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCityRequest $request)
@@ -64,7 +90,7 @@ class CityController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCityRequest  $request
+     * @param  \App\Http\Requests\city\UpdateCityRequest  $request
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
