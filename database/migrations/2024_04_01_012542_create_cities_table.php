@@ -8,15 +8,14 @@ class CreateCitiesTable extends Migration
 {
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('citys', function (Blueprint $table) {
             $table->id();
             $table->string('name',100);
-            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('citys');
     }
 }

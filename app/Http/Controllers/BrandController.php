@@ -2,85 +2,88 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\brand\StoreBrandRequest;
-use App\Http\Requests\brand\UpdateBrandRequest;
+use App\Http\Requests\brand\StoreRequest;
+use App\Http\Requests\brand\UpdateRequest;
+use App\Http\Requests\category\DestroyRequest;
 use App\Models\Brand;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $model;
+    public function __construct()
+    {
+        $this->model = new Brand();
+        $routeName = Route::currentRouteName();
+        $arr = explode('.', $routeName);
+        $arr = array_map('ucfirst', $arr);
+        $title = implode(' - ', $arr);
+        View::share('title', $title);
+    }
     public function index()
     {
-        //
+        return view('brand.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function api()
+    {
+        return DataTables::of($this->model::query())
+            ->addColumn('edit', function ($object) {
+                return route('brand.edit', $object);
+            })
+            ->addColumn('destroy', function ($object) {
+                return route('brand.destroy', $object);
+            })
+            ->make(true);
+    }
+
+    public function apiName(Request $request)
+    {
+        return $this->model
+            ->query()->where('name', 'like', '%' . $request->get('q') . '%')
+            ->get([
+                'id',
+                'name',
+            ]);
+    }
     public function create()
     {
-        //
+        return view('brand.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\brand\StoreBrandRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBrandRequest $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->model::query()->create($request->validated());
+        return response()->json('success',200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
+
+    public function show( )
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
+    public function edit($brandId)
     {
-        //
+        $brand = $this->model::query()->find($brandId);
+        return view('brand.edit',[
+            'brand' => $brand
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\brand\UpdateBrandRequest  $request
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(UpdateRequest $request, $brandId)
     {
-        //
+        $this->model::query()->where('id',$brandId)->update($request->validated());
+        return response()->json('success',200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Brand $brand)
+    public function destroy(DestroyRequest  $request, $brandId)
     {
-        //
+        $this->model::query()->where('id',$brandId)->delete();
+        return response()->json('success',200);
     }
 }

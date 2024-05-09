@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Specification;
+use App\Models\ProductDetail;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class SpecificationPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Specification  $specification
+     * @param  \App\Models\ProductDetail  $specification
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Specification $specification)
+    public function view(User $user, ProductDetail $specification)
     {
         //
     }
@@ -48,10 +48,10 @@ class SpecificationPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Specification  $specification
+     * @param  \App\Models\ProductDetail  $specification
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Specification $specification)
+    public function update(User $user, ProductDetail $specification)
     {
         //
     }
@@ -60,10 +60,10 @@ class SpecificationPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Specification  $specification
+     * @param  \App\Models\ProductDetail  $specification
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Specification $specification)
+    public function delete(User $user, ProductDetail $specification)
     {
         //
     }
@@ -72,10 +72,10 @@ class SpecificationPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Specification  $specification
+     * @param  \App\Models\ProductDetail  $specification
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Specification $specification)
+    public function restore(User $user, ProductDetail $specification)
     {
         //
     }
@@ -84,10 +84,10 @@ class SpecificationPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Specification  $specification
+     * @param  \App\Models\ProductDetail  $specification
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Specification $specification)
+    public function forceDelete(User $user, ProductDetail $specification)
     {
         //
     }

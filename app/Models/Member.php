@@ -15,12 +15,13 @@ class Member extends Model
         'email',
         'username',
         'password',
-        'roles_id',
+        'role_id',
+        'avatar',
     ];
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class,'roles_id','id');
+        return $this->belongsTo(Role::class,'role_id','id');
     }
     use HasFactory;
 }

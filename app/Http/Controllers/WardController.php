@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ward\StoreWardRequest;
 use App\Http\Requests\ward\UpdateWardRequest;
+use App\Models\District;
 use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ class WardController extends Controller
     }
     public function index()
     {
-        return view('admin.address.ward.index');
+        return view('address.ward.index');
     }
 
     public function api()
@@ -48,6 +49,14 @@ class WardController extends Controller
                 'name',
             ]);
     }
+
+    public function loadWard(Request $request){
+        $district = $request->input('district_id');
+        $arr =  Ward::query()->where('district_id',$district)->get();
+        return response()->json(
+            $arr,200);
+    }
+
     public function create()
     {
         //

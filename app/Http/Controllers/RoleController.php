@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Http\Requests\role\StoreRequest;
 use App\Models\Role;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -26,7 +24,7 @@ class RoleController extends Controller
     }
     public function index()
     {
-        return view('admin.role.index');
+        return view('role.index');
     }
 
     public function api()
@@ -59,10 +57,10 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view('admin.role.create');
+        return view('role.create');
     }
 
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRequest $request)
     {
         $this->model->create($request->validated());
         return redirect()->route('roles.index');
@@ -75,7 +73,7 @@ class RoleController extends Controller
 
     public function edit($role)
     {
-        return view('admin.role.edit', [
+        return view('role.edit', [
             'role' =>$this->model::query()->find($role),
         ]);
     }

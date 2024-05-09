@@ -24,7 +24,7 @@ class CityController extends Controller
     }
     public function index()
     {
-        return view('admin.address.city.index');
+        return view('address.city.index');
     }
 
     public function api()

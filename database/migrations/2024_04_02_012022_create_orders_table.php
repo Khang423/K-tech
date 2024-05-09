@@ -10,23 +10,21 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customers_id');
-            $table->unsignedBigInteger('members_id');
-            $table->unsignedBigInteger('order_details_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('order_detail_id');
             $table->string('receive_name',50);
             $table->string('receive_phone',11);
             $table->smallInteger('status')->index();
             $table->double('total_price');
             $table->text('address');
-            $table->unsignedBigInteger('wards_id');
-            $table->unsignedBigInteger('districts_id');
-            $table->unsignedBigInteger('cities_id');
-            $table->foreign('cities_id')->references('id')->on('cities');
-            $table->foreign('districts_id')->references('id')->on('districts');
-            $table->foreign('wards_id')->references('id')->on('wards');
-            $table->foreign('order_details_id')->references('id')->on('order_details');
-            $table->foreign('customers_id')->references('id')->on('customers');
-            $table->foreign('members_id')->references('id')->on('members');
+            $table->unsignedBigInteger('ward_id');
+            $table->unsignedBigInteger('district_id');
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('citys');
+            $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('ward_id')->references('id')->on('wards');
+            $table->foreign('order_detail_id')->references('id')->on('order_details');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();
         });
     }

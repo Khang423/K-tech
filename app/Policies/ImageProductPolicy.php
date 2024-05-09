@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Image_product;
+use App\Models\Image_;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class ImageProductPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Image_product  $imageProduct
+     * @param  \App\Models\Image_  $imageProduct
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Image_product $imageProduct)
+    public function view(User $user, Image_ $imageProduct)
     {
         //
     }
@@ -48,10 +48,10 @@ class ImageProductPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Image_product  $imageProduct
+     * @param  \App\Models\Image_  $imageProduct
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Image_product $imageProduct)
+    public function update(User $user, Image_ $imageProduct)
     {
         //
     }
@@ -60,10 +60,10 @@ class ImageProductPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Image_product  $imageProduct
+     * @param  \App\Models\Image_  $imageProduct
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Image_product $imageProduct)
+    public function delete(User $user, Image_ $imageProduct)
     {
         //
     }
@@ -72,10 +72,10 @@ class ImageProductPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Image_product  $imageProduct
+     * @param  \App\Models\Image_  $imageProduct
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Image_product $imageProduct)
+    public function restore(User $user, Image_ $imageProduct)
     {
         //
     }
@@ -84,10 +84,10 @@ class ImageProductPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Image_product  $imageProduct
+     * @param  \App\Models\Image_  $imageProduct
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Image_product $imageProduct)
+    public function forceDelete(User $user, Image_ $imageProduct)
     {
         //
     }

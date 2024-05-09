@@ -24,7 +24,7 @@ class DistrictController extends Controller
     }
     public function index()
     {
-        return view('admin.address.district.index');
+        return view('address.district.index');
     }
 
     public function api()
@@ -48,6 +48,14 @@ class DistrictController extends Controller
                 'name',
             ]);
     }
+
+    public function loadDistrict(Request $request){
+        $city_id = $request->input('city_id');
+        $arr =  District::query()->where('city_id',$city_id)->get();
+        return response()->json(
+            $arr,200);
+    }
+
     public function create()
     {
         //
