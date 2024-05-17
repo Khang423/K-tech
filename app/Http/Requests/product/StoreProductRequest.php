@@ -14,9 +14,6 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'member_id' => [
-                'required',
-            ],
             'brand_id' => [
                 'required',
             ],

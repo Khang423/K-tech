@@ -30,7 +30,8 @@ class StoreCustomerRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'regex:/^[a-z\d]+@[a-z]+(?:\.[a-z]+)+$/i'
+                'regex:/^[a-z\d]+@[a-z]+(?:\.[a-z]+)+$/i',
+                Rule::unique('customers')->ignore($this->customers),
             ],
             'password' => [
                 'required',
@@ -75,6 +76,7 @@ class StoreCustomerRequest extends FormRequest
             'phone.alpha_num' => 'Vui lòng nhập số.',
             //- message rules email
             'email.regex' => 'Email không hợp lệ.',
+            'email.unique' => 'Email đã được sử dụng.',
             //- message rules username
             'username.regex' => 'Tên đăng nhập không hợp lệ.',
             'username.max' => 'Tên đăng nhập không được vượt quá 50 kí tự.',

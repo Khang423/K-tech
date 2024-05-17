@@ -26,10 +26,10 @@ class AuthController extends Controller
             if (!Hash::check($request->get('password'), $user->password)) {
                 throw new Exception('Invalid password');
             }
-            session()->put('id', $user->id);
-            session()->put('name', $user->name);
+            session()->put('admin_id', $user->id);
+            session()->put('admin_name', $user->name);
             session()->put('role_id', $user->role_id);
-            session()->put('avatar', $user->avatar);
+            session()->put('admin_avatar', $user->avatar);
             $role = Role::query()->where('id', $user->role_id)->first();
             session()->put('role_name', $role->name);
             return response()->json('success', 200);
@@ -42,7 +42,11 @@ class AuthController extends Controller
 
     public function logOut()
     {
-        session()->flush();
+        session()->forget('admin_id');
+        session()->forget('admin_name');
+        session()->forget('role_id');
+        session()->forget('admin_avatar');
+        session()->forget('role_name');
         return redirect()->route('login');
 
     }

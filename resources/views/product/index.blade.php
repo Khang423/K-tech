@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-success mb-2" href="{{ route('product.create') }}">Create</a>
+            <a class="btn btn-success mb-2" href="{{ route('product.create') }}">Thêm sản phẩm</a>
             <div class="form-group">
                 <select name="" id="select-name"></select>
             </div>
@@ -36,12 +36,12 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Price</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ảnh </th>
+                    <th>Giá</th>
                     <th>Created_at</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
                 </tr>
                 </thead>
             </table>

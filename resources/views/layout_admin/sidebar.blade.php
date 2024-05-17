@@ -4,12 +4,12 @@
     <!-- LOGO -->
     <div class="logo">
         <a href="" class="logo text-center logo-light">
-                    <span class="logo-lg">
-                        <img src="{{ asset('image/logo.png') }}" style="width: 200px; height:130px;">
-                    </span>
+            <span class="logo-lg">
+                <img src="{{ asset('image/logo.png') }}" style="width: 200px; height:130px;">
+            </span>
             <span class="logo-sm">
-            <img src="{{ asset('image/logo.png') }}" style="width: 50px; height:50px;">
-        </span>
+                <img src="{{ asset('image/logo.png') }}" style="width: 50px; height:50px;">
+            </span>
         </a>
     </div>
 
@@ -25,137 +25,85 @@
             <li class="side-nav-item">
 
             </li>
-{{--account--}}
-            <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class=" uil-user-circle"></i>
-                    <span> Account </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="{{ route('admin.index') }}"><i class=" uil-user mr-1"></i>Admin</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('staff.index') }}"><i class="  uil-users-alt mr-1"></i>Staff</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('customer.index') }}"><i class="  uil-users-alt mr-1"></i>Customer</a>
-                    </li>
-                </ul>
-            </li>
-{{--product--}}
+            {{-- account --}}
+            @if (session()->get('role_id') === 1)
+                <li class="side-nav-item">
+                    <a href="javascript: void(0);" class="side-nav-link">
+                        <i class=" uil-user-circle"></i>
+                        <span> Tài Khoản </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="side-nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('admin.index') }}"><i class=" uil-user mr-1"></i>Quản trị viên</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('staff.index') }}"><i class="  uil-users-alt mr-1"></i>Nhân viên</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.index') }}"><i class="  uil-users-alt mr-1"></i>Khách hàng</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            {{-- product --}}
             <li class="side-nav-item">
                 <a href="{{ route('product.index') }}" class="side-nav-link">
                     <i class=" uil-laptop"></i>
-                    <span> Product </span>
+                    <span> Sản Phẩm </span>
                 </a>
             </li>
-{{--Supplier--}}
+            {{-- Supplier --}}
             <li class="side-nav-item">
                 <a href="{{ route('supplier.index') }}" class="side-nav-link">
                     <i class="uil-truck"></i>
-                    <span> Supplier </span>
+                    <span> Nhà Cung Cấp </span>
                 </a>
             </li>
-{{--address--}}
+            {{-- address --}}
             <li class="side-nav-item">
                 <a href="javascript: void(0);" class="side-nav-link">
                     <i class=" uil-map-marker"></i>
-                    <span> Address </span>
+                    <span> Địa chỉ </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="side-nav-second-level" aria-expanded="false">
                     <li>
-                        <a href="{{ route('ward.index') }}"><i class=" uil-user mr-1"></i>Ward</a>
+                        <a href="{{ route('ward.index') }}"><i class=" uil-user mr-1"></i>Xã</a>
                     </li>
                     <li>
-                        <a href="{{ route('districts.index') }}"><i class="  uil-users-alt mr-1"></i>District</a>
+                        <a href="{{ route('districts.index') }}"><i class="  uil-users-alt mr-1"></i>Huyện </a>
                     </li>
                     <li>
-                        <a href="{{ route('cities.index') }}"><i class="  uil-users-alt mr-1"></i>City</a>
+                        <a href="{{ route('cities.index') }}"><i class="  uil-users-alt mr-1"></i>Tỉnh Thành Phố</a>
                     </li>
                 </ul>
             </li>
-{{--Warehouse--}}
+            {{-- Warehouse --}}
             <li class="side-nav-item">
                 <a href="{{ route('warehouse.index') }}" class="side-nav-link">
                     <i class="  uil-building"></i>
-                    <span> Warehouse </span>
+                    <span> Kho Hàng </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('order.index') }}" class="side-nav-link">
+                    <i class="  uil-bill"></i>
+                    <span> Hóa đơn </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
                 <a href="{{ route('category.index') }}" class="side-nav-link">
                     <i class="  uil-building"></i>
-                    <span> Category </span>
+                    <span> Danh Mục </span>
                 </a>
             </li>
-
             <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="uil-envelope"></i>
-                    <span> Email </span>
-                    <span class="menu-arrow"></span>
+                <a href="{{ route('roles.index') }}" class="side-nav-link">
+                    <i class="  uil-building"></i>
+                    <span> Vai trò </span>
                 </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="apps-email-inbox.html">Inbox</a>
-                    </li>
-                    <li>
-                        <a href="apps-email-read.html">Read Email</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="uil-briefcase"></i>
-                    <span> Projects </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="apps-projects-list.html">List</a>
-                    </li>
-                    <li>
-                        <a href="apps-projects-details.html">Details</a>
-                    </li>
-                    <li>
-                        <a href="apps-projects-gantt.html">Gantt <span
-                                class="badge badge-pill badge-light-lighten font-10 float-right">New</span></a>
-                    </li>
-                    <li>
-                        <a href="apps-projects-add.html">Create Project <span
-                                class="badge badge-pill badge-success-lighten font-10 float-right">New</span></a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="side-nav-item">
-                <a href="apps-social-feed.html" class="side-nav-link">
-                    <i class="uil-rss"></i>
-                    <span> Social Feed </span>
-                </a>
-            </li>
-
-            <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="uil-clipboard-alt"></i>
-                    <span> Tasks </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="apps-tasks.html">List</a>
-                    </li>
-                    <li>
-                        <a href="apps-tasks-details.html">Details</a>
-                    </li>
-                    <li>
-                        <a href="apps-kanban.html">Kanban Board</a>
-                    </li>
-                </ul>
             </li>
         </ul>
         <div class="clearfix"></div>

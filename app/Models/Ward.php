@@ -20,5 +20,9 @@ class Ward extends Model
     {
         return $this->hasMany(Supplier::class);
     }
+    public function order(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
     use HasFactory;
 }

@@ -98,14 +98,19 @@
                                     <div class="form-group">
                                         <label>Card đồ họa</label>
                                         <textarea name="graphic_card" class="form-control" rows="4"
-                                                  cols="100"></textarea>
+                                        cols="100"></textarea>
                                         <span class="error-graphic_card text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Wifi</label>
+                                        <textarea name="wifi" class="form-control" rows="4"
+                                        cols="100"></textarea>
+                                        <span class="error-wifi text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -223,8 +228,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -241,7 +244,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

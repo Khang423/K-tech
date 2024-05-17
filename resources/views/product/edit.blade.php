@@ -25,7 +25,7 @@
                             <h4 class="text-muted font-weight-normal mt-0" title="Number of Customers">Product</h4>
                             <div class="form-group">
                                 <label>Name</label>
-                                <textarea name="name" class="form-control" rows="3">{{$product->name}}</textarea>
+                                <textarea name="name" class="form-control" rows="4">{{$product->name}}</textarea>
                                 <span class="error-name text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -100,14 +100,14 @@
                                             <div class="float-right">
                                                 <div class="form-group">
                                                     <label>Graphic card</label>
-                                                    <textarea name="graphic_card" class="form-control" rows="3">
+                                                    <textarea name="graphic_card" class="form-control" rows="4" cols="100">
                                                             {{ $productDetail->graphic_card }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>SSD</label>
-                                                    <textarea name="ssd" class="form-control" rows="3">
+                                                    <textarea name="ssd" class="form-control" rows="4">
                                                                 {{ $productDetail->ssd }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
@@ -122,21 +122,21 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Background Plate</label>
-                                                    <textarea name="bg_plate" class="form-control" rows="3">
+                                                    <textarea name="bg_plate" class="form-control" rows="4">
                                                                 {{ $productDetail->bg_plate }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Scanning frequency</label>
-                                                    <textarea name="scan_frequency" class="form-control" rows="3">
+                                                    <textarea name="scan_frequency" class="form-control" rows="4">
                                                                 {{ $productDetail->scan_frequency }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Screen size</label>
-                                                    <textarea name="screen_size" class="form-control" rows="3">
+                                                    <textarea name="screen_size" class="form-control" rows="4">
 
                                                                 {{ $productDetail->screen_size }}
 
@@ -145,49 +145,49 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Screen Technolory</label>
-                                                    <textarea name="screen_tech" class="form-control" rows="3">
+                                                    <textarea name="screen_tech" class="form-control" rows="4">
                                                                 {{ $productDetail->screen_tech }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Screen resolution</label>
-                                                    <textarea name="screen_resolution" class="form-control" rows="3">
+                                                    <textarea name="screen_resolution" class="form-control" rows="4">
                                                                 {{ $productDetail->screen_resolution }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Weight</label>
-                                                    <textarea name="weight" class="form-control" rows="3">
+                                                    <textarea name="weight" class="form-control" rows="4">
                                                                 {{ $productDetail->weight }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Dimension</label>
-                                                    <textarea name="dimension" class="form-control" rows="3">
+                                                    <textarea name="dimension" class="form-control" rows="4">
                                                                 {{ $productDetail->dimension }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Color</label>
-                                                    <textarea name="color" class="form-control" rows="3">
+                                                    <textarea name="color" class="form-control" rows="4">
                                                                 {{ $productDetail->color }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Material</label>
-                                                    <textarea name="material" class="form-control" rows="3">
+                                                    <textarea name="material" class="form-control" rows="4">
                                                                 {{ $productDetail->material }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Release </label>
-                                                    <textarea name="release_date" class="form-control" rows="3">
+                                                    <textarea name="release_date" class="form-control" rows="4">
                                                                 {{ $productDetail->release_date }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
@@ -203,28 +203,28 @@
                                             <div class="float-left">
                                                 <div class="form-group">
                                                     <label>CPU</label>
-                                                    <textarea name="cpu" class="form-control" rows="3">
+                                                    <textarea name="cpu" class="form-control" rows="4" cols="100">
                                                                 {{$productDetail->cpu }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>RAM</label>
-                                                    <textarea name="ram" class="form-control" rows="3">
+                                                    <textarea name="ram" class="form-control" rows="4">
                                                                 {{$productDetail->ram }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Ram type</label>
-                                                    <textarea name="ram_type" class="form-control" rows="3">
+                                                    <textarea name="ram_type" class="form-control" rows="4">
                                                                 {{$productDetail->ram_type }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Ram slot</label>
-                                                    <textarea name="ram_slot" class="form-control" rows="3">
+                                                    <textarea name="ram_slot" class="form-control" rows="4">
                                                                 {{$productDetail->ram_slot }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
@@ -232,49 +232,49 @@
                                                 <div class="form-group">
                                                     <label>Keyboard light</label>
                                                     <textarea name="keyboard_light" class="form-control"
-                                                              rows="3">
+                                                              rows="4">
                                                                 {{$productDetail->keyboard_light }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Webcam</label>
-                                                    <textarea name="webcam" class="form-control" rows="3">
+                                                    <textarea name="webcam" class="form-control" rows="4">
                                                                 {{$productDetail->webcam }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Operating system</label>
-                                                    <textarea name="operating_system" class="form-control" rows="3">
+                                                    <textarea name="operating_system" class="form-control" rows="4">
                                                                 {{$productDetail->operating_system }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Bluetooth</label>
-                                                    <textarea name="bluetooth" class="form-control" rows="3">
+                                                    <textarea name="bluetooth" class="form-control" rows="4">
                                                                 {{$productDetail->bluetooth }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Wifi</label>
-                                                    <textarea name="wifi" class="form-control" rows="3">
+                                                    <textarea name="wifi" class="form-control" rows="4">
                                                                 {{$productDetail->wifi }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Audio technolory</label>
-                                                    <textarea name="audio_tech" class="form-control" rows="3">
+                                                    <textarea name="audio_tech" class="form-control" rows="4">
                                                                 {{$productDetail->audio_tech }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Security</label>
-                                                    <textarea name="security" class="form-control" rows="3">
+                                                    <textarea name="security" class="form-control" rows="4">
                                                                 {{$productDetail->security }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
@@ -289,14 +289,14 @@
 
                                                 <div class="form-group">
                                                     <label>Battery</label>
-                                                    <textarea name="battery" class="form-control" rows="3">
+                                                    <textarea name="battery" class="form-control" rows="4">
                                                                 {{$productDetail->battery }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cooling system</label>
-                                                    <textarea name="cooling_system" class="form-control" rows="3">
+                                                    <textarea name="cooling_system" class="form-control" rows="4">
                                                                 {{ $productDetail->cooling_system }}
                                                     </textarea>
                                                     <span class="error-name text-danger"></span>

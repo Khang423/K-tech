@@ -5,8 +5,7 @@
         <div class="form-group">
             <label>Mail</label>
             <input class="form-control" type="text" id="emailaddress" name="email" placeholder="Enter your username">
-            <span class="error-username text-danger"></span>
-
+            <span class="error-email text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -23,9 +22,7 @@
             </div>
             <span class="error-password text-danger"></span>
         </div>
-
         <span class="message text-danger"></span>
-
         <div class="form-group mb-0 text-center">
             <button class="btn btn-primary btn-block" id="btn-login" type="button"><i class="mdi mdi-login"></i> Log In
             </button>
@@ -51,12 +48,12 @@
                 },
                 error: function (data) {
                     console.log(data);
-                    let errorUsername = data.responseJSON.errors.username ? data.responseJSON.errors.username[0] : '';
-                    $('.error-username').text(errorUsername);
+                    let errorUsername = data.responseJSON.errors.email ? data.responseJSON.errors.email[0] : '';
+                    $('.error-email').text(errorUsername);
                     let errorPassword = data.responseJSON.errors.password ? data.responseJSON.errors.password[0] : '';
                     $('.error-password').text(errorPassword);
-                    let message = data.responseJSON.errors ? data.responseJSON.errors : '';
-                    $('.message').text(message);
+                    let eror = data.responseJSON.errors ? data.responseJSON.errors : '';
+                    $('.message').text(eror);
                 }
             });
         });

@@ -31,26 +31,31 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        return view('account.customer.index');
+        $customer = Customer::query()->get();
+        $ward = Ward::query()->get();
+        $district = Ward::query()->get();
+        $city = Ward::query()->get();
+        return view('account.customer.index',[
+            'customer' => $customer,
+            'ward' => $ward,
+            'district' => $district,
+            'city' => $city,
+        ]);
     }
 
     public function api()
     {
+        
         $data = $this->model::query();
         return DataTables::of($data)
             ->editColumn('address', function ($object) {
-                return $object->address.' - '.$object->ward->name. ' - ' .$object->district->name. ' - ' .$object->city->name;
+                $wardName = $object->ward->name ?? '';
+                $districtName = $object->district->name ?? '';
+                $cityName = $object->city->name ?? '';
+                return $object->address.' - '. $wardName. ' - ' .$districtName. ' - ' . $cityName;
             })
             ->editColumn('birthdate', function ($object) {
                 return Carbon::parse($object->birthdate)->format('d/m/Y');
-            })
-            ->editColumn('gender', function ($object) {
-                $genders = [
-                    0 => 'Khác',
-                    1 => 'Nam',
-                    2 => 'Nữ'
-                ];
-                return $genders[$object->gender];
             })
             ->addColumn('edit', function ($object) {
                 return route('customer.edit', $object);
@@ -123,6 +128,7 @@ class CustomerController extends Controller
 
     public function update(UpdateCustomerRequest $request,$customer)
     {
+
         $arr = $request->validated();
         if ($request->hasFile('avatar-new')) {
             Storage::disk('public')->delete($arr['avatar']);

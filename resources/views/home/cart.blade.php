@@ -28,20 +28,20 @@
 @section('content')
     <div class="list_product">
         <div class="display-header d-flex justify-content-between pb-3">
-            <h3 class="display-7 text-dark text-uppercase">My Cart</h3>
+            <h3 class="display-7 text-dark text-uppercase"> Giỏ hàng của tôi</h3>
         </div>
         <hr>
         <div class="">
-            <table class="table table-hover table-centered">
+            <table class="table table-hover table-centered" style="width: 100%">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
-                    <th>Action</th>
+                    <th>SST</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ảnh </th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Thành tiền</th>
+                    <th></th>
                 </tr>
                 @php
                     $tmp = 1;
@@ -73,7 +73,7 @@
         <br>
         <div class="notional-price">
             <div class="display-header d-flex justify-content-between pb-3">
-                <h3 class="display-7 text-dark text-uppercase">notional price</h3>
+                <h3 class="display-7 text-dark text-uppercase">Tổng tiền</h3>
             </div>
 {{--            handle notional price--}}
             @php
@@ -90,7 +90,7 @@
             <div>
                 <a href="{{ route('home.order') }}" class="btn_buy">
                    <button>
-                       Buy Now
+                      Mua ngay
                    </button>
                 </a>
             </div>

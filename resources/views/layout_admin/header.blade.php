@@ -13,13 +13,13 @@
                aria-haspopup="false"
                aria-expanded="false">
                      <span class="account-user-avatar">
-                                            <img src="{{ asset('storage/'.session()->get('avatar'))}}
+                                            <img src="{{ asset('storage/'.session()->get('admin_avatar'))}}
                                    " alt="user-image" class="rounded-circle">
                                         </span>
 
                 <span>
-                                        <span class="account-user-name">@if(session()->has('name'))
-                                                {{ session('name') }}
+                                        <span class="account-user-name">@if(session()->has('admin_name'))
+                                                {{ session('admin_name') }}
                                             @endif</span>
                                         <span class="account-position">@if(session()->has('role_name'))
                                                 {{ session('role_name') }}

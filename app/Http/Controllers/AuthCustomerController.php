@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthCustomerRequest;
 use App\Http\Requests\AuthRequest;
+use App\Http\Requests\CustomerLoginRequest;
 use App\Models\Customer;
 use App\Models\Member;
 use App\Models\Role;
@@ -19,11 +21,13 @@ class AuthCustomerController extends Controller
         return view('home.signup');
     }
     //  handle process login from customer
-    public function processLogin(Request $request)
+    public function processLogin(CustomerLoginRequest  $request)
     {
         try {
             $user = Customer::query()
-                ->where('email', $request->get('email'))->firstOrFail();
+                ->where('email', $request->get('email'))
+                ->orwhere('phone', $request->get('email'))
+                ->firstOrFail();
             if (!Hash::check($request->get('password'), $user->password)) {
                 throw new Exception('Invalid password');
             }
@@ -33,25 +37,36 @@ class AuthCustomerController extends Controller
             return response()->json('success', 200);
         } catch (Throwable $e) {
             return response()->json([
-                'errors' => 'Account or password incorrect',
+                'errors' => 'Tài khoản hoặc mật khẩu không đúng',
             ], 400);
         }
     }
 
     public function logOut()
     {
-        session()->flush();
+        session()->forget('id');
+        session()->forget('name');
+        session()->forget('avatar');
         return redirect()->route('home.index');
 
     }
 
     public function register()
     {
-        return view('auth.register');
+        return view('home.register');
     }
 
-    public function processRegister(Request $request)
+    public function processRegister(AuthCustomerRequest $request)
     {
+        $register = $request->validated();
+        $arr = [];
+        $arr['name'] = $register['name'];
+        $arr['email'] = $register['email'];
+        $arr['password'] =Hash::make($request->get('password'),[
+            'rounds' => 12,
+        ]);
+        Customer::query()->create($arr);
 
+        return response()->json('success',200);
     }
 }
