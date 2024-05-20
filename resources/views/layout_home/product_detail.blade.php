@@ -75,8 +75,11 @@
 @include('layout_home.footer')
 <script src="{{ asset('template/js/jquery-1.11.0.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="{{ asset('template/js/bootstrap.bundle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/script.js') }}"></script>
+@stack('js')
 </body>
 </html>

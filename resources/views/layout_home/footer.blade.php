@@ -50,47 +50,11 @@
                     </div>
                     <div class="col-lg-2 col-sm-6 pb-3">
                         <div class="footer-menu text-uppercase">
-                            <h5 class="widget-title pb-2">Quick Links</h5>
-                            <ul class="menu-list list-unstyled text-uppercase">
-                                <li class="menu-item pb-2">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">About</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Shop</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Blogs</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Contact</a>
-                                </li>
-                            </ul>
+                            <iframe style="height: 200px" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1169.06106131075!2d105.01693317993613!3d9.74597954038696!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1716198360643!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6 pb-3">
-                        <div class="footer-menu text-uppercase">
-                            <h5 class="widget-title pb-2">Help & Info Help</h5>
-                            <ul class="menu-list list-unstyled">
-                                <li class="menu-item pb-2">
-                                    <a href="#">Track Your Order</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Returns Policies</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Shipping + Delivery</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Contact Us</a>
-                                </li>
-                                <li class="menu-item pb-2">
-                                    <a href="#">Faqs</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-3 col-sm-6 pb-3">
                         <div class="footer-menu contact-item">

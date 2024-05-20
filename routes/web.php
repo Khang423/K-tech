@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthCustomerController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CustomerController;
@@ -37,6 +38,10 @@ Route::group(
         Route::resource('account/admin', MemberController::class)->except(['show']);
         Route::get('admin/api', [MemberController::class, 'api'])->name('admin.api');
         Route::get('admin/api/name', [MemberController::class, 'apiName'])->name('admin.api.name');
+
+        Route::get('admin/demo', [MemberController::class, 'demo'])->name('admin.indexDemo');
+        Route::post('demo/chart', [MemberController::class, 'chart'])->name('admin.chart');
+
         // route staff
         Route::resource('account/staff', StaffController::class)->except(['show']);
         Route::get('staff/api', [StaffController::class, 'api'])->name('staff.api');
@@ -110,18 +115,20 @@ Route::group(
     ],
     function () {
         Route::get('signout', [AuthCustomerController::class, 'logOut'])->name('home.logout');
-        Route::get('home/cart/', [HomeController::class, 'indexCart'])->name('home.cart');
-        Route::get('home/up/{id}', [HomeController::class, 'upCart'])->name('home.upcart');
-        Route::get('home/down/{id}', [HomeController::class, 'downCart'])->name('home.downcart');
-        Route::get('home/destroy/{id}', [HomeController::class, 'cartDestroy'])->name('home.destroy');
-        Route::get('home/addtocard/{id}', [HomeController::class, 'addToCartAction'])->name('home.addtocart');
+        Route::get('home/cart', [CartController::class, 'index'])->name('cart.index');
+        Route::post('home/up', [CartController::class, 'up'])->name('cart.up');
+        Route::post('home/down', [CartController::class, 'down'])->name('cart.down');
+        Route::post('home/destroy', [CartController::class, 'Destroy'])->name('cart.destroy');
+        Route::post('home/add-to-card', [CartController::class, 'addToCart'])->name('cart.addtocart');
     },
 );
+
 // route product detail
 Route::get('home/product/{product_id}', [HomeController::class, 'productDetail'])->name('home.product_detail');
 // route order
 Route::get('brand/{name}', [HomeController::class, 'productBrand'])->name('home.brand');
 Route::get('home/cart/order', [HomeController::class, 'indexOrder'])->name('home.order');
 Route::get('home/cart/order/payment', [HomeController::class, 'indexPayment'])->name('home.payment');
-
 Route::post('order/store', [OrderController::class, 'store'])->name('order.store');
+Route::post('order/accept/{id}', [OrderController::class, 'accept'])->name('order.accept');
+Route::post('order/destroy/{id}', [OrderController::class, 'destroy'])->name('order.destroy');

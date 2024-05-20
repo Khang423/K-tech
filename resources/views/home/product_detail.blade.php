@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="float-right">
-                                        <a href="{{ route('home.addtocart', $p->id) }}">
+                                        <a href="{{ route('cart.addtocart', $p->id) }}">
                                             <button class="btn-addtocart">
                                                 Thêm vào giỏ hàng
                                             </button>

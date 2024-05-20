@@ -36,12 +36,15 @@ class HomeController extends Controller
     // page product detail
     public function productDetail($product_id)
     {
-
         $p_image = Image::query()->where('product_id', $product_id)->get();
         $p_detail = ProductDetail::query()->where('product_id', $product_id)->first();
         $p = Product::query()->find($product_id);
-        $brand1 = Brand::query()->where('id', $p->brand_id)->first();
-        $category = Category::query()->where('id', $p->category_id)->first();
+        $brand1 = Brand::query()
+            ->where('id', $p->brand_id)
+            ->first();
+        $category = Category::query()
+            ->where('id', $p->category_id)
+            ->first();
         $brand = Brand::query()->get();
         return view('home.product_detail', [
             'category' => $category,
@@ -49,135 +52,47 @@ class HomeController extends Controller
             'brand1' => $brand1,
             'p_image' => $p_image,
             'p_detail' => $p_detail,
-            'p' => $p
+            'p' => $p,
         ]);
     }
-
-    // ------------------------- handler cart---------------------------------------
-    // page my cart
-    public function indexCart()
-    {
-        $customer_id = session()->get('id');
-
-        $order = Order::query()->where('customer_id', $customer_id)->first();
-        if(!isset($order->customer_id))
-        {
-            $arr = [];
-            $arr['customer_id'] = $customer_id;
-            Order::query()->create($arr);
-            return redirect()->route('home.cart');
-        }
-
-        $order_detail = Order_detail::query()
-            ->where('order_id', $order->id)
-            ->addSelect([
-                'order_details.*',
-                'product_name' => Product::query()->select('name')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-                'image' => Product::query()->select('outsite_image')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-            ])
-            ->get();
-        $brand = Brand::query()->get();
-        return view('home.cart', [
-            'order_detail' => $order_detail,
-            'brand' => $brand,
-        ]);
-    }
-
-    //  add products to cart
-    public function addToCartAction($product_id)
-    {
-        $customer_id = session()->get('id');
-        $order = Order::query()->where('customer_id', $customer_id)->first();
-        $price = Product::query()->where('id', $product_id)->first();
-        $order_detail = Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->first();
-        $exists = Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->first();
-        $arr = [];
-        $arr['order_id'] = $order->id;
-        $arr['product_id'] = $product_id;
-        $arr['quantity'] = 1;
-        $arr['price'] = $price->price;
-        if ($exists) {
-            $arrnew['quantity'] = $order_detail->quantity += 1;
-            Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->update($arrnew);
-        } else {
-            Order_detail::query()->where('order_id', $order->id)->create($arr);
-        }
-
-        return redirect()->route('home.cart');
-    }
-
-    //  delete product from my cart
-    public function cartDestroy($product_id)
-    {
-        $customer_id = session()->get('id');
-        $order = Order::query()->where('customer_id', $customer_id)->first();
-        Order_detail::query()
-            ->where('product_id', $product_id)
-            ->where('order_id', $order->id)
-            ->delete();
-        return redirect()->route('home.cart');
-    }
-
-    public function upCart($product_id)
-    {
-        $customer_id = session()->get('id');
-        $order = Order::query()->where('customer_id', $customer_id)->first();
-        $order_detail = Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->first();
-        $arrnew['quantity'] = $order_detail->quantity += 1;
-        Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->update($arrnew);
-        return redirect()->route('home.cart');
-    }
-
-    public function downCart($product_id)
-    {
-        $customer_id = session()->get('id');
-        $order = Order::query()->where('customer_id', $customer_id)->first();
-        $order_detail = Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->first();
-        if ($order_detail->quantity > 1) {
-            $arrnew['quantity'] = $order_detail->quantity - 1;
-            Order_detail::query()->where('product_id', $product_id)->where('order_id', $order->id)->update($arrnew);
-        } else {
-            echo 'Quantity has been reduced to a limit';
-        }
-        return redirect()->route('home.cart');
-    }
-
-    // ------------------------- handler cart ---------------------------------------
 
     public function indexOrder()
     {
         $customer_id = session()->get('id');
-        $order = Order::query()->where('customer_id', $customer_id)->first();
+        $order = Order::query()->latest()->where('customer_id', $customer_id)->first();
         $order_detail = Order_detail::query()
             ->where('order_id', $order->id)
-            ->addSelect([
-                'order_details.*',
-                'product_name' => Product::query()->select('name')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-                'image' => Product::query()->select('outsite_image')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-            ])
             ->get();
-        $customer = Customer::query()->where('id', $customer_id)->first();
-
-        $city = City::query()->get();
-        $ward = Ward::query()->get();
-        $district = District::query()->get();
-        $brand = Brand::query()->get();
-        return view('home.pageOrder', [
-            'customer' => $customer,
-            'order_detail' => $order_detail,
-            'city_name' => $city,
-            'ward_name' => $ward,
-            'district_name' => $district,
-            'brand' => $brand,
-        ]);
+        $check = Order_detail::query()
+            ->where('order_id', $order->id)
+            ->get();
+        if (!($check->isEmpty())) {
+            //return redirect()->route('home.cart')->with('error','Giỏ hàng chưa có sản phẩm');
+            $customer_id = session()->get('id');
+            $order = Order::query()->latest()->where('customer_id', $customer_id)->first();
+            $order_detail = Order_detail::query()
+                ->join('orders', 'order_details.order_id', '=', 'orders.id')
+                ->where('order_id', $order->id)
+                ->where('customer_id', $order->customer_id)
+                ->where('orders.status', 0)
+                ->addSelect(['order_details.*', 'product_name' => Product::query()->select('name')->whereColumn('id', 'order_details.product_id')->limit(1), 'image' => Product::query()->select('outsite_image')->whereColumn('id', 'order_details.product_id')->limit(1)])
+                ->get();
+            $customer = Customer::query()->where('id', $customer_id)->first();
+            $city = City::query()->get();
+            $ward = Ward::query()->get();
+            $district = District::query()->get();
+            $brand = Brand::query()->get();
+            return view('home.pageOrder', [
+                'customer' => $customer,
+                'order_detail' => $order_detail,
+                'city_name' => $city,
+                'ward_name' => $ward,
+                'district_name' => $district,
+                'brand' => $brand,
+            ]);
+        } else {
+            return redirect()->route('cart.index')->with(['error' => 'Chưa có sản phẩm nào trong giỏ hàng.']);
+        }
     }
 
     public function indexPayment()
@@ -186,18 +101,12 @@ class HomeController extends Controller
         $order = Order::query()->where('customer_id', $customer_id)->first();
         $order_detail = Order_detail::query()
             ->where('order_id', $order->id)
-            ->addSelect([
-                'order_details.*',
-                'product_name' => Product::query()->select('name')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-                'image' => Product::query()->select('outsite_image')
-                    ->whereColumn('id', 'order_details.product_id')
-                    ->limit(1),
-            ])
+            ->addSelect(['order_details.*', 'product_name' => Product::query()->select('name')->whereColumn('id', 'order_details.product_id')->limit(1), 'image' => Product::query()->select('outsite_image')->whereColumn('id', 'order_details.product_id')->limit(1)])
             ->get();
         $customer = Customer::query()->where('id', $customer_id)->first();
-        $sum_quantity = Order_detail::query()->where('order_id', $order->id)->sum('quantity');
+        $sum_quantity = Order_detail::query()
+            ->where('order_id', $order->id)
+            ->sum('quantity');
         $city = City::query()->get();
         $ward = Ward::query()->get();
         $district = District::query()->get();
@@ -219,12 +128,14 @@ class HomeController extends Controller
     {
         $brand_id = Brand::query()->where('name', $request)->first();
         $nameBrand = $request;
-        $p = Product::query()->where('brand_id', $brand_id->id)->get();
+        $p = Product::query()
+            ->where('brand_id', $brand_id->id)
+            ->get();
         $brand = Brand::query()->get();
         return view('home.brand', [
             'p' => $p,
             'brand' => $brand,
-            'nameBrand' => $nameBrand
+            'nameBrand' => $nameBrand,
         ]);
     }
 
@@ -245,7 +156,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function infoUpdate(request $request){
+    public function infoUpdate(request $request)
+    {
         $id = session()->get('id');
         $arr = [];
         $arr['gender'] = $request->get('gender');
@@ -256,7 +168,7 @@ class HomeController extends Controller
         $arr['district_id'] = $request->get('district_id');
         $arr['wards_id'] = $request->get('wards_id');
         $arr['address'] = $request->get('address');
-        Customer::query()->where('id',$id)->update($arr);
-        return response()->json('success',200);
+        Customer::query()->where('id', $id)->update($arr);
+        return response()->json('success', 200);
     }
 }

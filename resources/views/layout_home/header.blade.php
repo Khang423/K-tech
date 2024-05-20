@@ -136,7 +136,7 @@
                             <a>
                                 <svg class="cart">
                         <li class="nav-item dropdown">
-                            <a class="nav-link me-4  link-dark" href="{{ route('home.cart') }}" role="button"
+                            <a class="nav-link me-4  link-dark" href="{{ route('cart.index') }}" role="button"
                                 aria-expanded="false">
                                 <i class="uil-cart"></i>
                             </a>

@@ -155,7 +155,7 @@
                                                 <label> Tỉnh Thành Phố</label>
                                                 <select name="city_id" class="form-control select2" data-toggle="select2"
                                                     id="city" required>
-                                                    <option  selected hidden value="{{ $customer->wards_id}}" >
+                                                    <option  selected hidden value="{{ $customer->city_id}}" >
                                                         @if ($customer->city_id)
                                                             {{ $customer->city->name }}
                                                         @else
@@ -175,7 +175,7 @@
                                                 <label> Quận huyện </label>
                                                 <select name="district_id" class="district form-control select2"
                                                     data-toggle="select2" required>
-                                                    <option  selected hidden value="{{ $customer->wards_id}}">
+                                                    <option  selected hidden value="{{ $customer->district_id}}">
                                                         @if ($customer->district_id)
                                                             {{ $customer->district->name }}
                                                         @else

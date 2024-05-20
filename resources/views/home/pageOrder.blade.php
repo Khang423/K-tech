@@ -223,7 +223,11 @@
                             <select name="city_id" class="form-control select2" data-toggle="select2" id="city"
                                 required>
                                 <option  selected hidden value="{{ $customer->city_id }}">
-                                    {{ $customer->city->name }}
+                                    @if ($customer->city_id)
+                                        {{ $customer->city->name }}
+                                    @else
+                                        --Tỉnh/Thành Phố--
+                                    @endif
                                 </option>
                                 @foreach ($city_name as $i)
                                     <option value="{{ $i->id }}">
@@ -238,7 +242,11 @@
                             <label> Quận huyện </label>
                             <select name="district_id" class="district form-control select2" data-toggle="select2" required>
                                 <option  selected hidden value="{{ $customer->district_id }}">
-                                    {{ $customer->district->name }}
+                                    @if ($customer->district_id)
+                                        {{ $customer->district->name }}
+                                    @else
+                                        --Quận/Huyện--
+                                    @endif
                                 </option>
                             </select>
                         </div>
@@ -251,8 +259,11 @@
                             <select name="wards_id" class="form-control select2" data-toggle="select2" id="ward"
                                 required>
                                 <option selected value="{{ $customer->wards_id }}">
-                                    {{ $customer->ward->name }}
-                                </option>
+                                    @if ($customer->wards_id)
+                                        {{ $customer->ward->name }}
+                                    @else
+                                        --Quận/Huyện--
+                                @endif
                             </select>
                         </div>
                     </div>

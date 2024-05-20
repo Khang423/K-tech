@@ -178,13 +178,14 @@ class ProductController extends Controller
 
     public function update(Request $request, $product)
     {
+
         try {
             $arrProduct = [];
             $arrProduct['name'] = $request->get('name');
             $arrProduct['price'] = $request->get('price');
             $arrProduct['category_id'] = $request->get('category_id');
             $arrProduct['brand_id'] = $request->get('brand_id');
-            $arrProduct['member_id'] = session()->get('id');
+            $arrProduct['member_id'] = session()->get('admin_id');
             $this->model->query()->where('id', $product)->update($arrProduct);
 
             DB::beginTransaction();
